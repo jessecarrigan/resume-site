@@ -11,10 +11,6 @@ window.onload = async function() {
     const counterElement = document.getElementById("counter");
     counterElement.textContent = "" + views;
 
-    body = {
-        count: count
-    };
-
     console.log("Updating views...")
     const update = await fetch("https://2c3xm80q8e.execute-api.us-west-2.amazonaws.com/views", {
         method: "POST",
