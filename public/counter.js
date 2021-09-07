@@ -1,12 +1,11 @@
 window.onload = async function() {
     console.log("Getting views...");
-    const count = await fetch("https://2c3xm80q8e.execute-api.us-west-2.amazonaws.com/views")
+    const getViews = await fetch("https://2c3xm80q8e.execute-api.us-west-2.amazonaws.com/views")
     .then(response => response.json())
     .then(data => {
-        let views = data.Item.count.N;
-        console.log("Previous views: " + views);
-        let count = parseInt(views);
-        return count + 1
+        let count = data.Item.count.N;
+        let views = parseInt(count);
+        return views
     });
 
     const counterElement = document.getElementById("counter");
@@ -16,9 +15,13 @@ window.onload = async function() {
         count: count
     }
 
-    const putResponse = await fetch("https://2c3xm80q8e.execute-api.us-west-2.amazonaws.com/views", {
-        method: "PUT",
-        body: JSON.stringify(body)
+    console.log("Updating views...")
+    const update = await fetch("https://2c3xm80q8e.execute-api.us-west-2.amazonaws.com/views", {
+        method: "POST",
+        headers: {
+            'Content-Length': 0
+        }
     })
-    .then(response => console.log(response.json()));
+    .then(response => response.json())
+    .then(data => console.log(data));
 };
