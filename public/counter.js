@@ -1,6 +1,6 @@
 window.onload = async function() {
     console.log("Getting views...");
-    const views = await fetch("https://2c3xm80q8e.execute-api.us-west-2.amazonaws.com/views")
+    const views = await fetch("https://qh57jj87i6.execute-api.us-west-2.amazonaws.com/resume_views_lambda_stage/views")
     .then(response => response.json())
     .then(data => {
         let count = data.Item.count.N;
@@ -12,7 +12,7 @@ window.onload = async function() {
     counterElement.textContent = "" + views;
 
     console.log("Updating views...")
-    const update = await fetch("https://2c3xm80q8e.execute-api.us-west-2.amazonaws.com/views", {
+    const update = await fetch("https://qh57jj87i6.execute-api.us-west-2.amazonaws.com/resume_views_lambda_stage/views", {
         method: "POST",
         headers: {
             'Content-Length': 0
